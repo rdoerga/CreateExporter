@@ -1,0 +1,17 @@
+<html>
+  <head>
+    {% if title %}
+        <title>{{ title }}</title>
+        {% else %}
+        <title>a title for a page</title>
+        {% endif %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="{{url_for('static', filename='scriptlib.js')}}"></script>
+    <style src="{{url_for('static', filename='my-style.css')}}"></style>
+  </head>
+  <body>
+    <div sandbox-include-html="/topmenu"></div> 
+  </body>
+  <script>includeHTML()</script>
+</html>

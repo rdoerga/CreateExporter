@@ -1,0 +1,62 @@
+<html>
+  <head>
+    {% if title %}
+        <title>{{ title }}</title>
+        {% else %}
+        <title>a title for a page</title>
+        {% endif %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="{{url_for('static', filename='scriptlib.js')}}"></script>
+    <style src="{{url_for('static', filename='my-style.css')}}"></style>
+    <script>
+       function addRowToTable() {
+            var table = document.getElementById("exportertable");
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount -1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            cell1.innerHTML = '<input type="text" name="columnname"' +rowCount+ '>';
+            cell2.innerHTML = "NEW CELL2";
+            var removeButtonText='<td> <button name="deleterow" onclick="removeRow(';
+            removeButtonText.concat(rowCount - 1);
+            removeButtonText.concat(')" type="button" >remove row</button></td>');
+            cell3.innerHTML = '<td> <button name="deleterow" onclick="removeRow("1")"></button> </td>';
+    }
+
+       function removeRow(rowID) {
+        var table = document.getElementById("exportertable");
+        table.removeRow(rowID);
+       }
+    </script>
+  </head>
+  <body>
+    <div sandbox-include-html="/topmenu"></div> 
+    <form>
+        <table id="exportertable">
+            <tr>
+               <td>exporter name</td>
+               <td> <input type="text" name="exportername"></td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td>Column Name</td>
+                <td>Column size</td>
+            </tr>
+            <tr>
+                <td> <input type="text" name="columnname1"</td>
+                <td> <input type="text" name="columnsize1"</td>
+                <td> <button name="deleterow" onclick="removeRow()" type="button" >remove row</button></td>
+            </tr>
+            <tr>
+                <td> <button name="addrow" onclick="addRowToTable()" type="button">add row</button></td>
+                <td> <button name="create" type="submit">create Exporter</button></td>
+            </tr>
+        </table>  
+    </form>
+
+</body>
+  <script>includeHTML()</script>
+</html>
+
